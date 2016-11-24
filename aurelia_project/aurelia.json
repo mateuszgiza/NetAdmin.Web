@@ -133,16 +133,13 @@
             "env": "dev"
           },
           {
-            "name": "semantic-ui",
-            "path": "../node_modules/semantic-ui-css",
-            "main": "semantic.min",
-            "deps": [
-              "jquery"
-            ],
+            "name": "bootstrap",
+            "path": "../node_modules/bootstrap/dist",
+            "main": "js/bootstrap.min",
+            "deps": [ "jquery" ],
             "exports": "$",
             "resources": [
-              "semantic.css",
-              "themes"
+              "css/bootstrap.css"
             ]
           }
         ]

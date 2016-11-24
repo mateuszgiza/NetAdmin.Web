@@ -1,61 +1,26 @@
 <template>
-  <require from="semantic-ui/semantic.css"></require>
+  <require from="bootstrap/css/bootstrap.css"></require>
   <require from="./styles/default.css"></require>
 
-  <div class="ui left fixed inverted vertical visible sidebar menu">
-    <div class="item">
-      NetAdmin
-    </div>
-    <div class="item" id="menu-databases">
-      <!--@await Component.InvokeAsync("DatabaseMenu")-->
-      <div class="ui inverted accordion">
-        <div repeat.for="database of databases">
-          <div class="title" id="db${$index}">
-            <i class="database icon"></i> ${database.name}
-          </div>
-          <div class="content">
-            <div class="transition hidden" id="tables${$index}">
-              @*@await Component.InvokeAsync("TableMenu")*@
-            </div>
-          </div>
-
-          <!--<script>
-        $("#db-@i").click(function(){
-        $('#tables-@i').load("/Command/GetTablesMenu?database=@database");
-    });
-    @{ i++; }
-        </script>-->
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="pusher" id="content">
-
-    <hr />
-    <footer>
-      <p>&copy; 2016 - Avilox</p>
-    </footer>
-  </div>
-  <div>
+  <div class="container-fluid">
     <div class="row">
-      <div class="col-md-2 bg-inverse" id="accordion" role="tablist">
+      <div class="col-md-2" id="accordion" role="tablist">
         <div class="card" repeat.for="database of databases">
-          <div class="card-header" role="tab" id="heading${$index}">
-            <h6 class="mb-0">
-              <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse${$index}" aria-expanded="false" aria-controls="collapse${$index}">
-            ${database.name}
+          <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse${$index}" aria-expanded="false" aria-controls="collapse${$index}">
+            <div class="card-header" role="tab" id="heading${$index}">
+              <div class="mb-0">
+                <i class="fa fa-database" aria-hidden="true"></i>
+                ${database.name}
+              </div>
+            </div>
           </a>
-            </h6>
-          </div>
 
           <div id="collapse${$index}" class="collapse" role="tabpanel" aria-labelledby="heading${$index}">
             <div class="card-block">
-              <ul>
-                <li repeat.for="table of database.tables">
-                  ${table}
-                </li>
-              </ul>
+              <p repeat.for="table of database.tables">
+                <i class="fa fa-table" aria-hidden="true"></i>
+                ${table}
+              </p>
             </div>
           </div>
         </div>
@@ -66,6 +31,11 @@
           <div class="row">
             <div class="col-md-4">Contact List Placeholder</div>
             <router-view class="col-md-8"></router-view>
+
+            <hr />
+            <footer>
+              <p>&copy; 2016 - Avilox</p>
+            </footer>
           </div>
         </div>
       </div>
