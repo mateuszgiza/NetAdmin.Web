@@ -1,39 +1,48 @@
-#accordion {
+#sidebar-menu {
     padding: 0;
-}
-
-#accordion > .card {
-    margin: 0;
-}
-
-#accordion,
-#accordion .card-header, 
-#accordion .card-block {
+    position: fixed;
+    left: 0;
+    width: 16.66%;
+    height: 100%;
     background-color: #2d2d2d;
 }
 
-#accordion .card-header,
-#accordion .card-block {
+#sidebar-menu > .card {
+    margin: 0;
+}
+
+#sidebar-menu,
+#sidebar-menu .card-header, 
+#sidebar-menu .card-block {
+    background-color: #2d2d2d;
+}
+
+#sidebar-menu .card-header,
+#sidebar-menu .card-block {
     color: #c9c9c9;
 }
 
-#accordion .card > a {
+#sidebar-menu .card > a {
     text-decoration: none;
 }
 
-#accordion .card {
+#sidebar-menu .card {
     border: 0;
 }
 
-#accordion .card:hover .card-header {
+#sidebar-menu .card:hover .card-header {
     background-color: #494949;
     cursor: pointer;
 }
 
-#accordion .card-block {
+#sidebar-menu .card-block {
     padding: 0 0 0 1.5em;
 }
 
-#accordion .card-block p {
+#sidebar-menu .card-block p {
     margin: 0;
+}
+
+.content {
+    margin-left: 16.66%;
 }
