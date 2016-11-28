@@ -1,5 +1,5 @@
 {
-  "name": "netadmin",
+  "name": "netadminweb",
   "dependencies": {},
   "globalDevDependencies": {
     "angular-protractor": "registry:dt/angular-protractor#1.5.0+20160425143459",

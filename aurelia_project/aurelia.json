@@ -1,5 +1,5 @@
 {
-  "name": "NetAdmin",
+  "name": "NetAdmin.Web",
   "type": "project:application",
   "platform": {
     "id": "web",
@@ -24,10 +24,10 @@
     "source": "src/**/*.html"
   },
   "cssProcessor": {
-    "id": "none",
-    "displayName": "None",
-    "fileExtension": ".css",
-    "source": "src/**/*.css"
+    "id": "sass",
+    "displayName": "Sass",
+    "fileExtension": ".scss",
+    "source": "src/**/*.scss"
   },
   "editor": {
     "id": "vscode",
@@ -115,7 +115,6 @@
           "aurelia-templating",
           "aurelia-templating-binding",
           "text",
-          "jquery",
           {
             "name": "aurelia-templating-resources",
             "path": "../node_modules/aurelia-templating-resources/dist/amd",
@@ -131,16 +130,6 @@
             "path": "../node_modules/aurelia-testing/dist/amd",
             "main": "aurelia-testing",
             "env": "dev"
-          },
-          {
-            "name": "bootstrap",
-            "path": "../node_modules/bootstrap/dist",
-            "main": "js/bootstrap.min",
-            "deps": [ "jquery" ],
-            "exports": "$",
-            "resources": [
-              "css/bootstrap.css"
-            ]
           }
         ]
       }

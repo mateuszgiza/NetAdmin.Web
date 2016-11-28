@@ -1,0 +1,15 @@
+<template>
+    <form role="sign-in">
+        <fieldset>
+            <i class="fa fa-user fa-fw" aria-hidden="true"></i>
+            <input type="text" class="blue full-width" placeholder="Login" value.bind="model.username">
+        </fieldset>
+        <fieldset>
+            <i class="fa fa-key fa-fw" aria-hidden="true"></i>
+            <input type="password" class="blue full-width" placeholder="Password" value.bind="model.password">
+        </fieldset>
+        <fieldset>
+            <button type="submit" class="blue full-width" click.delegate="signIn()">Sign in</button>
+        </fieldset>
+    </form>
+</template>

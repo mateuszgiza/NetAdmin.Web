@@ -1,28 +1,15 @@
 <template>
-  <require from="bootstrap/css/bootstrap.css"></require>
   <require from="./styles/default.css"></require>
-
   <require from="./elements/sidebar-menu"></require>
 
-  <div class="container-fluid">
-    <div class="row">
-      <sidebar-menu></sidebar-menu>
+  <sidebar-menu></sidebar-menu>
 
-      <div class="content">
-        <div class="col-md-10">
-          <div class="container">
-            <div class="row">
-              <div class="col-md-4">Contact List Placeholder</div>
-              <router-view class="col-md-8"></router-view>
-
-              <hr />
-              <footer>
-                <p>&copy; 2016 - Avilox</p>
-              </footer>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="content">
+    <router-view></router-view>
+    
+    <footer>
+      <p>&copy; 2016 - NetAdmin</p>
+    </footer>
   </div>
+
 </template>

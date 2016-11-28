@@ -1,21 +1,19 @@
 <template>
-    <div class="col-md-2" id="sidebar-menu" role="tablist">
-        <div class="card" repeat.for="database of databases">
-            <a class="collapsed" data-toggle="collapse" data-parent="#sidebar-menu" href="#collapse${$index}" aria-expanded="false" aria-controls="collapse${$index}">
-                <div class="card-header" role="tab" id="heading${$index}">
-                    <div class="mb-0">
-                        <i class="fa fa-database" aria-hidden="true"></i> ${database.name}
-                    </div>
-                </div>
-            </a>
-
-            <div id="collapse${$index}" class="collapse" role="tabpanel" aria-labelledby="heading${$index}">
-                <div class="card-block">
-                    <p repeat.for="table of database.tables">
-                        <i class="fa fa-table" aria-hidden="true"></i> ${table}
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
+    <nav>
+        <h3 class="title">NetAdmin</h3>
+        <ul>
+            <li repeat.for="database of databases" class="${$parent.selected === database ? 'active' : ''}">
+                <a click.delegate="$parent.click(database)">
+                    <i class="fa fa-database" aria-hidden="true"></i>
+                    ${database.name}
+                </a>
+                <ul class="hidden">
+                    <li repeat.for="table of database.tables">
+                        <i class="fa fa-table" aria-hidden="true"></i>
+                        ${table}
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
 </template>
