@@ -1,14 +1,14 @@
 <nav>
     <h3 class="title">NetAdmin</h3>
     <ul>
-        <li repeat.for="database of databases" class="${$parent.selected === database ? 'active' : ''}">
-            <a click.delegate="$parent.click(database)">
-                <i class="fa fa-database" aria-hidden="true"></i> ${database.name}
+        <li *ngFor="let database of databases">
+            <a> <!--click.delegate="$parent.click(database)">-->
+                <i class="fa fa-database" aria-hidden="true"></i> {{database}}
             </a>
             <ul class="hidden">
-                <li repeat.for="table of database.tables">
-                    <i class="fa fa-table" aria-hidden="true"></i> ${table}
-                </li>
+                <!--<li *ngFor="let table of database.tables">
+                    <i class="fa fa-table" aria-hidden="true"></i> {{table}}
+                </li>-->
             </ul>
         </li>
     </ul>
