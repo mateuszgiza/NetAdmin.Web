@@ -1,0 +1,201 @@
+$font-stack:        Helvetica, sans-serif;
+$primary-color:     #333;
+$bg-color:          #A77F88;
+$default-radius:    1em;
+$bg-transparent:    rgba(0,0,0,0.15);
+
+$menu-width:        2/12 * 100%;
+$menu-color:        #eee;
+$menu-hover:        rgba(0,0,0,0.3);//#555;
+$menu-selected:     rgba(0,0,0,0.4);//#444;
+$menu-bg:           rgba(0,0,0,0.5);//#333;
+
+$input-focused:     rgba(81, 203, 238, 1);
+
+//--------------------
+// BUTTONS
+//--------------------
+$btn-default: #5A5A5A;
+$btn-blue: #00A1E4;
+
+@import 'reset';
+
+html {
+    height: 100%;
+}
+
+body {
+    font: 100% $font-stack;
+    color: $primary-color;
+    
+    background: #5C258D; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #5C258D , #4389A2); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #5C258D , #4389A2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+*, *:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+nav {
+    display: block;
+    position: fixed;
+    overflow: auto;
+    height: 100%;
+    width: $menu-width;
+    background-color: $menu-bg;
+
+    .title {
+        @extend .reset;
+        padding: 12px;
+        color: $menu-color;
+        border-bottom: 2px solid lighten($menu-bg, 10);
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    li {
+        a {
+            display: block;
+            padding: 10px 12px;
+            text-decoration: none;
+            color: $menu-color;
+            cursor: pointer;
+
+            &::visited {
+                color: $menu-color;
+            }
+        }
+
+        &.active {
+            background-color: $menu-selected;
+        }
+
+        &:hover:not(.active) {
+            background-color: $menu-hover;
+        }
+
+        &:not(.active) {
+            > ul {
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.5s cubic-bezier(0, 1.05, 0, 1);
+            }
+        }
+
+        > ul {
+            color: $menu-color;
+            max-height: 1000px;
+            transition: max-height 2s linear;
+            > li {
+                padding: 6px;
+            }
+        }
+    }
+}
+
+.content {
+    margin-left: $menu-width;
+    padding: 16px 16px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    left: $menu-width;
+    right: 0;
+    padding: 16px;
+    background-color: $bg-transparent;
+    color: #aaa;
+
+    font-size: 12px;
+    text-align: center;
+}
+
+form {
+    input {
+        &:not([type=submit]),
+        &:not([type=file]) {
+            padding: 1em 1em 1em 2.5em;
+            border-radius: $default-radius;
+            border: 1px solid #aaa;
+            outline: 0;
+            transition: all 0.25s ease;
+        }
+
+        &.red {
+            border-color: red;
+        }
+
+        &.blue {
+            border-color: cornflowerblue;
+        }
+
+        &:focus {
+            border-color: $input-focused;
+            box-shadow: 0 0 5px $input-focused;
+        }
+    }
+
+    fieldset {
+        padding: 12px;
+        position: relative;
+        border: 0;
+
+        i {
+            position: absolute;
+            left: 24px;
+            top: 24px;
+            color: gray;
+
+            // &:after {
+            //     content: "|";
+            //     position: inherit;
+            //     padding: 0;
+            // }
+        }
+    }
+
+    &[role=sign-in] {
+        display: block;
+        @extend .one-third;
+        margin: auto;
+    }
+}
+
+button {
+    padding: 12px;
+    border-radius: $default-radius;
+    outline: 0;
+    border: 1px solid $btn-default;
+    background-color: transparent;
+    cursor: pointer;
+    transition: all 0.25s ease-out;
+    color: $btn-default;
+
+    &:hover {
+        color: #fff;
+        background-color: $btn-default;        
+    }
+
+    &.blue {
+        color: $btn-blue;
+        border-color: $btn-blue;
+        &:hover {
+            color: #fff;
+            background-color: $btn-blue;
+        }
+    }
+}
+
+.full-width {
+    width: 100%;
+}
+
+.one-third {
+    width: 33.33%
+}

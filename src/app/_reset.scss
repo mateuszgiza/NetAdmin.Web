@@ -1,0 +1,11 @@
+html,
+body,
+ul,
+ol {
+    @extend .reset;
+}
+
+.reset {
+    margin: 0;
+    padding: 0;
+}
