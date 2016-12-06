@@ -24,7 +24,7 @@ export class LoginPageComponent {
         }
     }
 
-    signIn(): void {
+    signIn(): boolean {
         if (this.validate() === false) {
             return;
         }
@@ -36,6 +36,7 @@ export class LoginPageComponent {
         }
 
         // Notify user that he is not authenticated
+        return false;
     }
 
     private validate(): boolean {
