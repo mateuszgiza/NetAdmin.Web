@@ -1,0 +1,19 @@
+<nav>
+    <a [routerLink]="['/']">
+        <h3 class="title"><i class="fa fa-home" aria-hidden="true"></i> NetAdmin</h3>
+    </a>
+    <ul>
+        <li *ngFor="let database of databases" [ngClass]="{active: selected === database}">
+            <a (click)="click(database)">
+                <i class="fa fa-database" aria-hidden="true"></i> {{database.name}}
+            </a>
+            <ul class="hidden">
+                <li *ngFor="let table of database.tables">
+                    <a [routerLink]="['/show', database.name, table.name]">
+                        <i class="fa fa-table" aria-hidden="true"></i> {{table.name}}
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</nav>

@@ -1,3 +1,4 @@
+import { TableComponent } from './table/table.component';
 import { NgModule, ApplicationRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
@@ -18,7 +19,9 @@ import { HomeComponent } from './home';
 import { AboutComponent } from './about';
 import { NoContentComponent } from './no-content';
 import { XLarge } from './home/x-large';
-import { SidebarMenuComponent } from './sidebar-menu.component';
+
+import { SidebarMenuComponent } from './sidebar-menu';
+import { LoginPageComponent } from './login';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -43,7 +46,9 @@ type StoreType = {
     HomeComponent,
     NoContentComponent,
     XLarge,
-    SidebarMenuComponent
+    SidebarMenuComponent,
+    LoginPageComponent,
+    TableComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,

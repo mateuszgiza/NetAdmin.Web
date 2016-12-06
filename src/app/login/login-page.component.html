@@ -1,0 +1,15 @@
+<form role="sign-in">
+    <fieldset>
+        <i class="fa fa-user fa-fw" aria-hidden="true"></i>
+        <input type="text" name="username" class="blue full-width" placeholder="Login" [(ngModel)]="model.username" required>
+    </fieldset>
+    <fieldset>
+        <i class="fa fa-key fa-fw" aria-hidden="true"></i>
+        <input type="password" name="password" class="blue full-width" placeholder="Password" [(ngModel)]="model.password" required>
+    </fieldset>
+    <fieldset>
+        <button type="submit" class="blue full-width" (click)="signIn()">Sign in</button>
+    </fieldset>
+</form>
+
+<pre>{{model | json}}</pre>
