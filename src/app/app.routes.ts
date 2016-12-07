@@ -16,6 +16,7 @@ export const ROUTES: Routes = [
     path: 'detail', loadChildren: () => System.import('./+detail')
       .then((comp: any) => comp.default),
   },
+  { path: 'login/:callback', component: LoginPageComponent },
   { path: 'login', component: LoginPageComponent },
   { path: 'show/:db/:table', component: TableComponent },
 
