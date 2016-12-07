@@ -1,4 +1,3 @@
-import { Auth } from '../auth';
 import { Authentication } from './authentication';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
@@ -16,14 +15,13 @@ export class LoginPageComponent {
 
     constructor(
         private router: Router,
-        private authService: Authentication,
-        private auth: Auth
+        private authService: Authentication
     ) { }
 
     ngOnInit(): void {
-        // if (this.authService.isAuthenticated()) {
-        //     this.router.navigate(['/']);
-        // }
+        if (this.authService.isAuthenticated) {
+            this.router.navigate(['/']);
+        }
     }
 
     signIn(): boolean {
@@ -33,7 +31,7 @@ export class LoginPageComponent {
 
         this.authService.authenticate(this.model);
 
-        if (this.authService.isAuthenticated()) {
+        if (this.authService.isAuthenticated) {
             this.router.navigate(['/']);
         }
 

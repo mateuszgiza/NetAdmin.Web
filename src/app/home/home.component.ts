@@ -1,3 +1,4 @@
+import { Authentication } from '../login/authentication';
 import { Auth } from '../auth';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
@@ -10,7 +11,8 @@ import { XLarge } from './x-large';
   selector: 'home',
   providers: [
     Title,
-    Auth
+    Auth,
+    Authentication
   ],
   templateUrl: './home.component.html'
 })
@@ -21,19 +23,24 @@ export class HomeComponent {
   constructor(
     public appState: AppState,
     public title: Title,
-    public auth: Auth,
+    private auth: Auth,
+    private authService: Authentication,
     private router: Router
   ) { }
 
   ngOnInit() {
-    // if (this.authService.isAuthenticated() === false) {
-    //   this.router.navigate(['/login']);
-    //   return;
-    // }
+    if (this.authService.isAuthenticated === false) {
+      this.router.navigate(['/login']);
+      return;
+    }
 
     console.log('hello `Home` component');
     console.log('Current App State', this.appState.state);
 
-    //this.user = this.authService.currentUser;
+    this.user = this.authService.currentUser;
+  }
+
+  logout(): void {
+    this.authService.logout();
   }
 }

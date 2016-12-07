@@ -8,8 +8,12 @@
 
     <h3>Hello {{user}}!</h3>
 
-    <button type="button" class="blue full-width" (click)="auth.login()" *ngIf="!auth.authenticated()">Log In</button>
-    <button type="button" class="blue full-width" (click)="auth.logout()" *ngIf="auth.authenticated()">Log Out</button>
+    <button class="blue" [routerLink]="['/login']">Login</button>
+    <button class="blue" (click)="logout()">Logout</button>
+
+    <!-- Auth0 -->
+    <!--<button type="button" class="blue full-width" (click)="auth.login()" *ngIf="!auth.authenticated()">Log In</button>
+    <button type="button" class="blue full-width" (click)="auth.logout()" *ngIf="auth.authenticated()">Log Out</button>-->
 
   </div>
 
