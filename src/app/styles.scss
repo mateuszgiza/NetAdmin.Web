@@ -99,14 +99,18 @@ nav {
 }
 
 .content {
-    margin-left: $menu-width;
     padding: 16px 16px;
+
+    &.pad-left, 
+    &.pad-left > footer {
+        margin-left: $menu-width;
+    }
 }
 
 footer {
     position: absolute;
     bottom: 0;
-    left: $menu-width;
+    left: 0;
     right: 0;
     padding: 16px;
     background-color: $bg-transparent;

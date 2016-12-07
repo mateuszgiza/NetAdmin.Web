@@ -11,7 +11,6 @@ import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularcla
  */
 import { ENV_PROVIDERS } from './environment';
 import { ROUTES } from './app.routes';
-import { AUTH_PROVIDERS } from 'angular2-jwt';
 
 // App is our top level component
 import { AppComponent } from './app.component';
@@ -25,10 +24,14 @@ import { XLarge } from './home/x-large';
 import { SidebarMenuComponent } from './sidebar-menu';
 import { LoginPageComponent } from './login';
 
+// Services
+import { Authentication } from './login/authentication';
+
 // Application wide providers
 const APP_PROVIDERS = [
   ...APP_RESOLVER_PROVIDERS,
-  AppState
+  AppState,
+  Authentication
 ];
 
 type StoreType = {
@@ -60,8 +63,7 @@ type StoreType = {
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
-    APP_PROVIDERS,
-    AUTH_PROVIDERS
+    APP_PROVIDERS
   ]
 })
 export class AppModule {

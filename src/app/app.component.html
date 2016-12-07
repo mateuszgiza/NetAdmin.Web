@@ -39,9 +39,9 @@
 
 
 
-<sidebar-menu></sidebar-menu>
+  <sidebar-menu *ngIf="authService.isAuthenticated"></sidebar-menu>
 
-  <div class="content">
+  <div class="content" [ngClass]="{'pad-left': authService.isAuthenticated}">
     <router-outlet></router-outlet>
     
     <footer>

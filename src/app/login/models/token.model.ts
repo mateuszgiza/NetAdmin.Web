@@ -1,4 +1,6 @@
+import * as moment from 'moment';
+
 export interface IToken {
     username: string;
-    expirationDate: Date;
+    expirationDate: moment.Moment;
 }

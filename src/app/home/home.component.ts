@@ -1,5 +1,4 @@
 import { Authentication } from '../login/authentication';
-import { Auth } from '../auth';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -10,9 +9,7 @@ import { XLarge } from './x-large';
 @Component({
   selector: 'home',
   providers: [
-    Title,
-    Auth,
-    Authentication
+    Title
   ],
   templateUrl: './home.component.html'
 })
@@ -23,7 +20,6 @@ export class HomeComponent {
   constructor(
     public appState: AppState,
     public title: Title,
-    private auth: Auth,
     private authService: Authentication,
     private router: Router
   ) { }

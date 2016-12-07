@@ -16,4 +16,4 @@ Date.prototype.addSeconds = function (seconds: number): Date {
     let newDate = new Date(target);
     newDate.setSeconds(target.getSeconds() + seconds);
     return newDate;
-}
+};

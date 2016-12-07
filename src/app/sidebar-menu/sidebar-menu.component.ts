@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Authentication } from '../login/authentication';
 
 @Component({
     selector: 'sidebar-menu',
@@ -11,6 +12,13 @@ export class SidebarMenuComponent {
         { name: 'Db-3', tables: [{ name: 'Table-1' }, { name: 'Table-2' }, { name: 'Table-3' }] },
     ];
     selected: IDatabaseEntry;
+
+    constructor(
+        private authService: Authentication
+    ) { }
+
+    ngOnInit(): void {
+    }
 
     click(db: IDatabaseEntry): void {
         if (this.selected === db) {

@@ -4,6 +4,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 
 import { AppState } from './app.service';
+import { Authentication } from './login/authentication';
 
 /*
  * App Component
@@ -21,12 +22,11 @@ export class AppComponent {
   url = 'https://twitter.com/AngularClass';
 
   constructor(
-    public appState: AppState) {
-
-  }
+    public appState: AppState,
+    private authService: Authentication
+    ) { }
 
   ngOnInit() {
-    console.log('Initial App State', this.appState.state);
   }
 
 }

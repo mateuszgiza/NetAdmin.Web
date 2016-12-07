@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ILoginModel, IToken } from '../models';
 
 import '../../utils';
+import * as moment from 'moment';
 
 const SECRET_KEY = '_x_SECRET_x_';
 const AUTH_KEY = 'auth-key';
@@ -22,8 +23,7 @@ export class Authentication {
         }
 
         let encodedToken = this.tokenFromLoginModel(model);
-        let tokenString = this.buildEncodedToken(encodedToken);
-        localStorage.setItem(AUTH_KEY, tokenString);
+        this.saveToken(encodedToken);
     }
 
     public logout(): void {
@@ -65,10 +65,16 @@ export class Authentication {
         let token: IToken = null;
         try {
             token = <IToken>JSON.parse(tokenString);
+            try {
             token = this.removeTokenIfExpired(token);
+            }
+            catch (e) {
+                console.error(`Error with expire time!: ${e}`);
+                this.removeToken();
+            }
         }
         catch (e) {
-            console.log(`Error when parsing token!`);
+            console.error(`Error when parsing token!`);
             this.removeToken();
         }
 
@@ -85,7 +91,8 @@ export class Authentication {
 
     private tokenFromLoginModel(model: ILoginModel): IToken {
         let token = <IToken>{
-            username: model.username
+            username: model.username,
+            expirationDate: moment().utc()
         };
         this.renewExpiration(token);
 
@@ -97,9 +104,15 @@ export class Authentication {
             return;
         }
 
-        console.log(`Renewing expiration time. Current: ${token.expirationDate.toISOString()}`);
-        token.expirationDate = new Date().addSeconds(EXPIRE_TIME);
+        if (token.expirationDate !== null &&
+            token.expirationDate !== undefined) {
+            console.log(`Renewing expiration time. Current: 
+            ${moment(token.expirationDate).utc().toISOString()}`);
+        }
+        token.expirationDate = moment().add(EXPIRE_TIME, 'seconds').utc();
         console.log(`New expiration date: ${token.expirationDate.toISOString()}`);
+
+        this.saveToken(token);
     }
 
     private isTokenExpired(token: IToken): boolean {
@@ -107,7 +120,7 @@ export class Authentication {
             return true;
         }
 
-        let isExpired = token.expirationDate < new Date();
+        let isExpired = moment(token.expirationDate).utc().isBefore(moment().utc());
 
         if (isExpired) {
             console.log(`Token has expired!`);
@@ -127,5 +140,10 @@ export class Authentication {
 
     private removeToken(): void {
         localStorage.removeItem(AUTH_KEY);
+    }
+
+    private saveToken(token: IToken): void {
+        let tokenString = this.buildEncodedToken(token);
+        localStorage.setItem(AUTH_KEY, tokenString);
     }
 }
