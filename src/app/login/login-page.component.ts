@@ -15,14 +15,14 @@ export class LoginPageComponent {
     callback: string;
 
     constructor(
-        private params: Params,
+        //private params: Params,
         private router: Router,
         private route: ActivatedRoute,
         private authService: Authentication
     ) {
-        this.callback = params['callback'];
-        let l = route.queryParams.map(p => p['ss']);
-        let k = route.
+        // this.callback = params['callback'];
+        // let l = route.queryParams.map(p => p['ss']);
+        // let k = route.
     }
 
     ngOnInit(): void {
