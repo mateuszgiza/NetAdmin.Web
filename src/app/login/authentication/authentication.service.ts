@@ -1,6 +1,8 @@
 import { ITokenJson, Token } from '../models/token.model';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Headers, Http, RequestOptions } from '@angular/http';
+import 'rxjs/add/operator/toPromise';
 
 import { ILoginModel, IToken } from '../models';
 
@@ -13,13 +15,16 @@ const EXPIRE_TIME = 30;
 
 @Injectable()
 export class Authentication {
+    private loginUrl = 'http://localhost:5000/token';
+    private renewTokenUrl = '';
+
     constructor(
-        private router: Router
+        private router: Router,
+        private http: Http
     ) { }
 
-    public authenticate(model: ILoginModel): void {
-        let encodedToken = this.signIn(model);
-        this.saveToken(encodedToken);
+    public authenticate(model: ILoginModel): Promise<void> {
+        return this.signIn(model);
     }
 
     public logout(): void {
@@ -57,12 +62,19 @@ export class Authentication {
         return token;
     }
 
-    private signIn(model: ILoginModel): IToken {
+    private signIn(model: ILoginModel): Promise<void> {
         // Call API to get new token using username/password
-        let newToken = null;
-        this.saveToken(newToken);
+        let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+        let options = new RequestOptions({ headers: headers });
+        return this.http.post(this.loginUrl, `username=${model.username}&password=${model.password}`, options)
+            .toPromise()
+            .then(response => response.json() as ITokenJson)
+            .then(tokenJson => this.onTokenReceived(tokenJson));
+    }
 
-        return newToken;
+    private onTokenReceived(tokenJson: ITokenJson): void {
+        let token = new Token(tokenJson);
+        this.saveToken(token);
     }
 
     private renewToken(token: IToken): void {
@@ -71,8 +83,12 @@ export class Authentication {
         }
 
         // Call API to get new token using old token
-        let newToken = null;
-        this.saveToken(newToken);
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        this.http.post(this.renewTokenUrl, token.getJsonToken(), options)
+            .toPromise()
+            .then(response => response.json() as ITokenJson)
+            .then(tokenJson => this.onTokenReceived(tokenJson));
     }
 
     private isTokenExpired(token: IToken): boolean {
@@ -128,5 +144,10 @@ export class Authentication {
         let tokenString: string = atob(encodedToken);
         let tokenJson = <ITokenJson>JSON.parse(tokenString);
         return new Token(tokenJson);
+    }
+
+    private handleError(error: any): Promise<any> {
+        console.error('An error occurred', error); // for demo purposes only
+        return Promise.reject(error.message || error);
     }
 }

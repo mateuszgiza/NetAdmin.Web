@@ -36,15 +36,18 @@ export class LoginPageComponent {
             return;
         }
 
-        this.authService.authenticate(this.model);
+        this.authService.authenticate(this.model)
+            .then(r => this.onSignedIn());
 
+        // Notify user that he is not authenticated
+        return false;
+    }
+
+    private onSignedIn(): void {
         if (this.authService.isAuthenticated) {
             let url = this.callback || '/';
             this.router.navigate([url]);
         }
-
-        // Notify user that he is not authenticated
-        return false;
     }
 
     private validate(): boolean {
