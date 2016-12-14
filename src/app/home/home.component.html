@@ -2,7 +2,6 @@
   <h1 x-large class="sample-content">Your Content Here</h1>
 
   <hr>
-  <hr>
 
   <div>
 
@@ -14,6 +13,10 @@
     <!-- Auth0 -->
     <!--<button type="button" class="blue full-width" (click)="auth.login()" *ngIf="!auth.authenticated()">Log In</button>
     <button type="button" class="blue full-width" (click)="auth.logout()" *ngIf="auth.authenticated()">Log Out</button>-->
+
+    <div *ngFor="let conn of connections">
+      Owner: {{conn.owner}} | Host: {{conn.host}} | {{conn.password}}
+    </div>
 
   </div>
 
