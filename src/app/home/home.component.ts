@@ -21,6 +21,7 @@ export class HomeComponent {
   localState = { value: '' };
   user: string;
   connections: any[];
+  selectedConn: any;
 
   constructor(
     public appState: AppState,

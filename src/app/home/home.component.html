@@ -14,8 +14,15 @@
     <!--<button type="button" class="blue full-width" (click)="auth.login()" *ngIf="!auth.authenticated()">Log In</button>
     <button type="button" class="blue full-width" (click)="auth.logout()" *ngIf="auth.authenticated()">Log Out</button>-->
 
-    <div *ngFor="let conn of connections">
-      Owner: {{conn.owner}} | Host: {{conn.host}} | {{conn.password}}
+    <p *ngIf="selectedConn">
+      Selected: {{selectedConn.host}}:{{selectedConn.port}} ({{selectedConn.username}})
+    </p>
+    <div>
+      <select [(ngModel)]="selectedConn">
+        <option *ngFor="let conn of connections" [ngValue]="conn">
+          Host: {{conn.host}}:{{conn.port}} ({{conn.username}})
+        </option>
+      </select>
     </div>
 
   </div>
